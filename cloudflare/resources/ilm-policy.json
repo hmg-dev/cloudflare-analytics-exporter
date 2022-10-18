@@ -1,0 +1,38 @@
+{
+    "_meta": {
+      "description": "rollover policy for cloudflare analytics data",
+      "project": {
+        "name": "cloudflare-analytics-exporter"
+      }
+    },
+    "phases": {
+      "hot": {
+        "min_age": "0ms",
+        "actions": {
+          "set_priority": {
+            "priority": 100
+          },
+          "rollover": {
+            "max_size": "20gb"
+          }
+        }
+      },
+      "cold": {
+        "min_age": "30d",
+        "actions": {
+          "set_priority": {
+            "priority": 40
+          },
+          "readonly" : { }
+        }
+      },
+      "delete": {
+        "min_age": "60d",
+        "actions": {
+          "delete": {
+            "delete_searchable_snapshot": true
+          }
+        }
+      }
+    }
+}

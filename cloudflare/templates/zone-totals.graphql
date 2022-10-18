@@ -1,0 +1,56 @@
+query ($zoneIDs: [String!], $mintime: Time!, $maxtime: Time!, $limit: Int!) {
+	viewer {
+		zones(filter: { zoneTag_in: $zoneIDs }) {
+			zoneTag
+			httpRequests1mGroups(limit: $limit, filter: { datetime_geq: $mintime, datetime_lt: $maxtime }) {
+				uniq {
+					uniques
+				}
+				sum {
+					browserMap {
+						pageViews
+						uaBrowserFamily
+					}
+					bytes
+					cachedBytes
+					cachedRequests
+					clientHTTPVersionMap {
+						clientHTTPProtocol
+						requests
+					}
+					clientSSLMap {
+						clientSSLProtocol
+						requests
+					}
+					contentTypeMap {
+						bytes
+						requests
+						edgeResponseContentTypeName
+					}
+					countryMap {
+						bytes
+						clientCountryName
+						requests
+						threats
+					}
+					encryptedBytes
+					encryptedRequests
+					ipClassMap {
+						ipType
+						requests
+					}
+					pageViews
+					requests
+					responseStatusMap {
+						edgeResponseStatus
+						requests
+					}
+				}
+				dimensions {
+					datetime
+				}
+			}
+
+		}
+	}
+}

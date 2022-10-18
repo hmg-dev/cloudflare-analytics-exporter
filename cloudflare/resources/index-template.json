@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "index": {
+      "lifecycle": {
+        "name": "cf-analytics-policy",
+        "rollover_alias": "cf-analytics"
+      }
+    }
+  }
+}

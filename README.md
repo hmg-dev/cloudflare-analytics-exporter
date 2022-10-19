@@ -99,6 +99,19 @@ As the service must "only" compare two parameters, it can be as simple as an ngi
 * cloudflare account
 * [Optional] "concurrency validation service"
 
+# How to configure
+## in the app
+You must change some values in the `config.py`:
+* `cf_api_user` - your cloudflare account
+* `es_host` - Domain of your elasticsearch Instance/Cluster (must be reachable via https!)
+* `es_user` - Elasticsearch user with permissions to read indices, create indices with the pattern specified in `es_cf_index_pattern`, create index-templates and ilm-policies 
+* `zones` - configure the IDs and names of your cloudflare-zones
+
+## at runtime
+Secrets are injected via environment variables:
+* `ES_PASSWD` - the password for your elasticsearch user
+* `CF_API_TOKEN` - your cloudflare [API-token](https://developers.cloudflare.com/analytics/graphql-api/getting-started/authentication/api-token-auth/)
+
 # Features
 * stateless data provider (run where you want, restart how often you want)
 * support automatic index rollover via ILM (you need to enable that feature in your elasticsearch instance)
@@ -108,3 +121,6 @@ As the service must "only" compare two parameters, it can be as simple as an ngi
 
 # Known Issues
 * some metrics, that cloudflare provide, are not yet supported (e.g. firewall events, worker invocations, etc.)
+
+# Screenshots
+![Grafana Dashboard](examples/Screenshot_dashboard.png "Grafana Dashboard")

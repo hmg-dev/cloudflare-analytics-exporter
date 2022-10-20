@@ -47,6 +47,7 @@ def run_fetch_and_push(reference_dt, storage):
     except Exception as e:
         print(f"Error processing data: {e}")
         print(f"{e}\nCaused by: {traceback.format_exc()}")
+        time.sleep(30)
 
     return reference_dt
 
